@@ -64,7 +64,7 @@ const BookFeature = ({ display, setAdd }) => {
                     </li>
 
                     <li className={`product-review ${display == 'review' ? 'active' : ''}`}>
-                        <p>
+                        <div>
                             <label className='d-block'>Review rating</label>
                             <BookRating />
                             <label className='d-block'>Review text</label>
@@ -72,7 +72,7 @@ const BookFeature = ({ display, setAdd }) => {
 
                             </textarea>
                             <span className='border-0 d-block'><button className='review-button'><FaArrowRight size={15} className='mx-2' /> <span>Submit using my account</span> </button> <button ><FaArrowRight size={15} className='mx-2' /><span>Submit as a guest</span></button></span>
-                        </p>
+                        </div>
                     </li>
                 </ul>
             </div>

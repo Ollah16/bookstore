@@ -8,13 +8,13 @@ import { TiStar } from "react-icons/ti";
 import { GiWorld } from "react-icons/gi";
 import { MdVerifiedUser } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
-import NavBar from './NavBar';
-import NavBottom from './NavBottom';
-import useHCB from '../custom_hook/useHCB';
-import ExpandableNav from './Expandable';
-import FooterPage from './Footer';
-import { handleViewedBook } from '../myRedux/myActions';
-import BookFeature from './bookFeature';
+import NavBar from './components/NavBar';
+import NavBottom from './components/NavBottom';
+import useHCB from './custom_hook/useHCB';
+import ExpandableNav from './components/Expandable';
+import FooterPage from './components/Footer';
+import { handleViewedBook } from './myRedux/myActions';
+import BookFeature from './components/bookFeature';
 
 
 const ViewMore = () => {
@@ -32,8 +32,6 @@ const ViewMore = () => {
 
 
     return (<Container fluid className='bookstore-container'>
-        <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
-
         <NavBar />
 
         <section className='viewmore-content'>
@@ -170,6 +168,8 @@ const ViewMore = () => {
             </div>
 
         </section>
+
+        <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
 
         <ExpandableNav activeCategory={activeCategory} />
 

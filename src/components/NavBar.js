@@ -22,7 +22,7 @@ const NavBar = () => {
         const handleScroll = () => {
             let currentScrollPos = window.pageYOffset;
             const checkScroll = prevScrollPos > currentScrollPos && navbarRef.current
-            navbarRef.current.style.top = checkScroll ?? '0';
+            if (navbarRef.current) navbarRef.current.style.top = checkScroll ?? '0';
             setShowGenre(checkScroll)
             prevScrollPos = currentScrollPos;
         };

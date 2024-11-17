@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const GenreList = ({ showGenre }) => {
-    const allBooks = useSelector(state => state.allBooks)
     const booksByGenre = useSelector(state => state.booksByGenre)
     const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!allBooks.length) return
-    }, [allBooks.length])
 
     return (
         <section id='genre-section' className={`genre-div ${showGenre ? 'display-genre' : 'no-display-genre'}`}>

@@ -43,7 +43,14 @@ const myReducer = (state = allState, action) => {
 
             return {
                 ...state,
-                allBooks
+                allBooks,
+                booksByGenre: state.allBooks.reduce((acc, book) => {
+                    if (!acc[book.genre]) {
+                        acc[book.genre] = [];
+                    }
+                    acc[book.genre].push(book);
+                    return acc;
+                }, [...state.booksByGenre])
             }
 
         case "VIEWED_BOOK":

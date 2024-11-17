@@ -13,8 +13,6 @@ import FooterPage from './components/Footer';
 import Allbooks from './components/allbooks';
 import SearchedBook from './components/searchedBook';
 import Genreclass from './components/genreclass';
-import { handleGetAllBooks, handleSort } from './myRedux/myActions';
-import { useDispatch } from 'react-redux';
 
 const BookStorePage = ({
     handleLogout,
@@ -23,12 +21,6 @@ const BookStorePage = ({
     const bookstoreBodyRef = useRef(null)
     const containerRef = useRef(null)
     const [activeCategory, handleFooterBtn] = useHCB()
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(handleGetAllBooks())
-        dispatch(handleSort())
-    }, [dispatch])
 
     useEffect(() => {
         const checkSearch = activeCategory && activeCategory !== 'search'

@@ -1,9 +1,9 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ViewMore from './components/viewmore';
+import ViewMore from './viewmore';
 import MyUploads from './myUploads';
 import { useDispatch, } from 'react-redux';
 import {
@@ -14,12 +14,17 @@ import {
   handleAuth,
   handleRegister,
   handleNewMessage,
+  handleGetAllBooks,
 } from './myRedux/myActions';
 
 import BookStorePage from './bookStorePage';
 
 function App() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(handleGetAllBooks())
+  }, [dispatch])
 
   const handleAuthentication = (data) => {
     dispatch(handleAuth(data))
