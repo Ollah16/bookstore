@@ -12,11 +12,11 @@ const GenreList = ({ showGenre }) => {
                 {Object.entries(booksByGenre).map(([genre, genreBooks]) => (
                     <dl key={genre} >
                         <dt>{genre}</dt>
-                        <dd className={`${genreBooks.length > 10 ? 'scrolly' : null} ${!showGenre ? 'close-list' : 'open-list'}`}>
-                            {genreBooks.map(book => (
+                        <dd className={`${genreBooks.length > 10 ? 'scrolly' : null}`}>
+                            {genreBooks.map((book, index) => (
                                 <span
                                     onClick={() => navigate(`/viewmore/${book._id}`)}
-                                    key={book._id}
+                                    key={index}
                                 >
                                     {book.title}
                                 </span>

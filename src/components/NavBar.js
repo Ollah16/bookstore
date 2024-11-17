@@ -3,13 +3,14 @@ import { IoSearch } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { clearSearch, handleAllSearch } from "../myRedux/myActions";
+import { clearSearch, handleAllSearch, handleSorting } from "../myRedux/myActions";
 import { useLocation, useNavigate } from "react-router-dom";
 import GenreList from "./genreList";
 
 const NavBar = () => {
 
     const searchedBook = useSelector(state => state.searchedBook)
+    const allBooks = useSelector(state => state.allBooks)
     const [showGenre, setShowGenre] = useState(true)
     const dispatch = useDispatch()
     let [searchValue, setSearchInp] = useState('')
@@ -17,6 +18,10 @@ const NavBar = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const navbarRef = useRef(null)
+
+    useEffect(() => {
+        if (allBooks.length) return dispatch(handleSorting())
+    }, [dispatch, allBooks])
 
     useEffect(() => {
         const handleScroll = () => {

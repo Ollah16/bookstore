@@ -72,8 +72,8 @@ export const handleGetAllBooks = () => (dispatch) => {
         .catch((err) => { console.error(err) })
 }
 
-export const handleSort = () => (dispatch) => {
-    dispatch({ type: 'SORT' })
+export const handleSorting = () => (dispatch) => {
+    dispatch({ type: 'SORT_GENRE' })
 }
 
 
