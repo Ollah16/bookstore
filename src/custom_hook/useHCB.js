@@ -4,7 +4,7 @@ const useHCB = () => {
     let [activeCategory, setActiveNav] = useState('')
 
     const handleFooterBtn = (toggleType) => {
-        setActiveNav((prev) => toggleType == prev ? null : toggleType)
+        setActiveNav((prev) => toggleType === prev ? null : toggleType)
     }
 
     return [activeCategory, handleFooterBtn]

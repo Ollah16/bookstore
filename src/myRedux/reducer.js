@@ -3,7 +3,8 @@ let allState = {
     isLogged: false,
     viewedBook: {},
     allBooks: [],
-    userUploads: []
+    userUploads: [],
+    booksByGenre: []
 }
 
 const myReducer = (state = allState, action) => {
@@ -32,6 +33,14 @@ const myReducer = (state = allState, action) => {
 
         case "ALL_BOOKS":
             const { allBooks } = action.payload
+
+            state.allBooks.forEach(book => {
+                if (!state.booksByGenre[book.genre]) {
+                    state.booksByGenre[book.genre] = [];
+                }
+                state.booksByGenre[book.genre].push(book);
+            })
+
             return {
                 ...state,
                 allBooks

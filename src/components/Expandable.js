@@ -1,17 +1,16 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ExpandableNav = ({
     activeCategory,
-    menuSec,
-    booksByGenre,
-    basketSec,
-    bookerySec,
 }) => {
+
+    const booksByGenre = useSelector(state => state.booksByGenre)
 
     return (
         <>
-            <section className={`d-md-none menu ${activeCategory === 'menu' ? 'active' : ''}`} ref={menuSec}>
+            <section className={`d-md-none menu ${activeCategory === 'menu' ? 'active' : ''}`}>
                 <div>
                     <div className="menu_listFirst">Menu</div>
                     <div className="menu_list">Home</div>
@@ -33,7 +32,7 @@ const ExpandableNav = ({
 
             </section>
 
-            <section className={`d-md-none basket ${activeCategory === 'basket' ? 'active' : ''}`} ref={basketSec}>
+            <section className={`d-md-none basket ${activeCategory === 'basket' ? 'active' : ''}`}>
                 <div>
                     <div>
                         <button>View basket</button>
@@ -53,7 +52,7 @@ const ExpandableNav = ({
                 </div>
             </section>
 
-            <section className={`d-md-none bookery ${activeCategory === 'bookery' ? 'active' : ''}`} ref={bookerySec}>
+            <section className={`d-md-none bookery ${activeCategory === 'bookery' ? 'active' : ''}`}>
                 <div>
                     <div>
                         <p>Sign in</p>

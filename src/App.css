@@ -22,14 +22,23 @@
     padding: 0 20px;
 }
 
+.genre-div {
+    overflow: hidden;
+    transition: height 250ms ease-in-out;
+}
+
 @media(min-width: 992px) {
     .bookstore-nav .dl {
         display: flex;
         justify-content: space-evenly;
     }
 
-    .no-display-scroll {
-        display: none;
+    .no-display-genre {
+        height: 0px;
+    }
+
+    .display-genre {
+        height: 40px;
     }
 
     .nav-brand-div div:last-child {
@@ -1026,7 +1035,7 @@
     .product-ul li {
         position: relative;
         top: 0;
-        bottom: 0;
+        overflow: hidden;
     }
 
     .product-ul li p {
@@ -1036,20 +1045,21 @@
 
     .product-ul li:nth-of-type(2) {
         background-color: white;
-        height: 0;
-        transition: height 500ms ease-in-out;
     }
 
-    ul.product-ul:nth-child(1) li:nth-of-type(2).active {
-        height: 240px;
+
+    .product-description,
+    .product-details,
+    .product-review {
+        overflow-y: auto;
+        max-height: 0px;
+        transition: max-height 500ms ease-in-out;
     }
 
-    ul.product-ul:nth-child(2) li:nth-of-type(2).active {
-        height: 370px;
-    }
-
-    ul.product-ul:nth-child(3) li:nth-of-type(2).active {
-        height: 300px;
+    .product-description.active,
+    .product-details.active,
+    .product-review.active {
+        max-height: 500px;
     }
 
     .product-ul li:first-of-type button {

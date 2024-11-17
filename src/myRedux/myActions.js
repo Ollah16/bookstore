@@ -72,6 +72,11 @@ export const handleGetAllBooks = () => (dispatch) => {
         .catch((err) => { console.error(err) })
 }
 
+export const handleSort = () => (dispatch) => {
+    dispatch({ type: 'SORT' })
+}
+
+
 export const handleViewedBook = (bookId) => (dispatch) => {
     axios.get(`https://book-store-back-end-three.vercel.app/store/viewmore/${bookId}`, null)
         .then((response) => {
