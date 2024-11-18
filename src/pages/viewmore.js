@@ -171,7 +171,7 @@ const ViewMore = () => {
 
         </section>
 
-        {/* <OtherBooks viewedBook={viewedBook} /> */}
+        <OtherBooks viewedBook={viewedBook} />
 
         <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
 
