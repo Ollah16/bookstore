@@ -13,7 +13,7 @@ const NavBar = () => {
     const allBooks = useSelector(state => state.allBooks)
     const [showGenre, setShowGenre] = useState(true)
     const dispatch = useDispatch()
-    let [searchValue, setSearchInp] = useState('')
+    let [searchValue, setSearchInp] = useState()
     let prevScrollPos = window.pageYOffset;
     const location = useLocation();
     const navigate = useNavigate()
@@ -54,8 +54,8 @@ const NavBar = () => {
 
     return (
         <nav ref={navbarRef} expand="lg" className='bookstore-nav'>
-            <section className='nav-brand-div' onClick={() => navigate('/')}>
-                <div>
+            <section className='nav-brand-div'>
+                <div onClick={() => navigate('/')}>
                     <h2>Bookery</h2>
                     <p>Your Online Bookshop</p>
                 </div>
@@ -67,7 +67,7 @@ const NavBar = () => {
                         type="text"
                         id='search'
                         placeholder='Search by title, author, keyword....'
-                        onInput={(e) => setSearchInp(e.target.value)}
+                        onChange={(e) => setSearchInp(e.target.value)}
                     />
 
                     {searchedBook && <button className='clear-search' onClick={clearSearch}>X</button>}
