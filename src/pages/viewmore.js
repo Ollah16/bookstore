@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
 import { TiStar } from "react-icons/ti";
 import { GiWorld } from "react-icons/gi";
 import { MdVerifiedUser } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
-import NavBar from './components/NavBar';
-import NavBottom from './components/NavBottom';
-import useHCB from './custom_hook/useHCB';
-import ExpandableNav from './components/Expandable';
-import FooterPage from './components/Footer';
-import { handleViewedBook } from './myRedux/myActions';
-import BookFeature from './components/bookFeature';
+import NavBar from '../components/NavBar';
+import NavBottom from '../components/NavBottom';
+import useHCB from '../custom_hook/useHCB';
+import ExpandableNav from '../components/Expandable';
+import FooterPage from '../components/Footer';
+import BookFeature from '../components/bookFeature';
+import axios from 'axios';
+import OtherBooks from '../components/otherBooks';
+
+export const loader = async ({ params }) => {
+    try {
+        const response = await axios.get(`https://book-store-back-end-three.vercel.app/store/viewmore/${params.bookId}`, null)
+        const { viewedBook } = response.data
+        return viewedBook
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 
 const ViewMore = () => {
 
-    const { bookId } = useParams()
-    const dispatch = useDispatch()
-    const viewedBook = useSelector(state => state.viewedBook)
+    const viewedBook = useLoaderData()
     const [activeCategory, handleFooterBtn] = useHCB()
-
     let [display, setAdd] = useState('description')
-
-    useEffect(() => {
-        dispatch(handleViewedBook(bookId));
-    }, [bookId, dispatch])
-
 
     return (<Container fluid className='bookstore-container'>
         <NavBar />
@@ -168,6 +170,8 @@ const ViewMore = () => {
             </div>
 
         </section>
+
+        {/* <OtherBooks viewedBook={viewedBook} /> */}
 
         <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
 

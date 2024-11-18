@@ -5,14 +5,14 @@ import { TiStar } from "react-icons/ti";
 import { FaTruck } from "react-icons/fa6";
 import { GiBookPile } from "react-icons/gi";
 
-import NavBottom from './components/NavBottom';
-import ExpandableNav from './components/Expandable';
-import useHCB from './custom_hook/useHCB';
-import NavBar from './components/NavBar';
-import FooterPage from './components/Footer';
-import Allbooks from './components/allbooks';
-import SearchedBook from './components/searchedBook';
-import Genreclass from './components/genreclass';
+import NavBottom from '../components/NavBottom';
+import ExpandableNav from '../components/Expandable';
+import useHCB from '../custom_hook/useHCB';
+import NavBar from '../components/NavBar';
+import FooterPage from '../components/Footer';
+import Allbooks from '../components/allbooks';
+import SearchedBook from '../components/searchedBook';
+import Genreclass from '../components/genreclass';
 
 const BookStorePage = ({
     handleLogout,

@@ -76,17 +76,6 @@ export const handleSorting = () => (dispatch) => {
     dispatch({ type: 'SORT_GENRE' })
 }
 
-
-export const handleViewedBook = (bookId) => (dispatch) => {
-    axios.get(`https://book-store-back-end-three.vercel.app/store/viewmore/${bookId}`, null)
-        .then((response) => {
-            const { viewedBook } = response.data
-            dispatch({ type: 'VIEWED_BOOK', payload: { viewedBook } })
-        }).catch((err) => {
-            console.error(err)
-        })
-}
-
 export const handleChanges = (type, bookId, data) => {
 
     return async (dispatch) => {

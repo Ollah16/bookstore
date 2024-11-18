@@ -1,7 +1,14 @@
 import React from 'react'
 import BookRating from './bookRating'
+import { useSelector } from 'react-redux'
+import { FaShoppingCart } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
-const OtherBooks = () => {
+const OtherBooks = ({ viewedBook }) => {
+
+    const allBooks = useSelector(state => state.allBooks)
+    const navigate = useNavigate()
+
     return (
         <div className='other-books'>
             <h4>Other {viewedBook.genre} books you might like</h4>
@@ -15,11 +22,10 @@ const OtherBooks = () => {
                             src={`https://expressbuckett.s3.eu-west-2.amazonaws.com/bookstore/${book.cover}`}
                             className='book-image' />
 
-                        <div className="book-info"
-                        >
+                        <div className="book-info">
                             <h4>{book.title}</h4>
                             <p>{book.author}</p>
-                            <button className='more-details' onClick={() => dispatch(handleViewedBook(book._id))}>more details</button>
+                            <button className='more-details' onClick={() => navigate(`viewmore/${book._id}`)}>more details</button>
                         </div>
 
                         <BookRating />
@@ -28,7 +34,7 @@ const OtherBooks = () => {
 
                     </div>))}
             </div>
-        </div>)
+        </div >)
 }
 
 export default OtherBooks

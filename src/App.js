@@ -1,10 +1,10 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import HomePage from './home';
+import { Outlet, Route, Routes } from 'react-router-dom';
+// import HomePage from './home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ViewMore from './viewmore';
-import MyUploads from './myUploads';
+// import ViewMore from './viewmore';
+// import MyUploads from './myUploads';
 import { useDispatch, } from 'react-redux';
 import {
   handleBookAdd,
@@ -17,7 +17,7 @@ import {
   handleGetAllBooks,
 } from './myRedux/myActions';
 
-import BookStorePage from './bookStorePage';
+// import BookStorePage from './bookStorePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,26 +55,26 @@ function App() {
     localStorage.removeItem('accessToken')
   }
 
-  return (
-    <Routes>
-      <Route path='/p' element={<HomePage
-        handleAuthentication={handleAuthentication}
-        handleIsRegister={handleIsRegister}
-      />} />
+  return (<Outlet />
+    // <Routes>
+    //   <Route path='/p' element={<HomePage
+    //     handleAuthentication={handleAuthentication}
+    //     handleIsRegister={handleIsRegister}
+    //   />} />
 
-      <Route path='/*' element={<BookStorePage
-        handleLogout={handleLogout}
-      />} />
+    //   <Route path='/*' element={<BookStorePage
+    //     handleLogout={handleLogout}
+    //   />} />
 
-      <Route path='/viewmore/:bookId' element={<ViewMore />} />
+    //   <Route path='/viewmore/:bookId' element={<ViewMore />} />
 
-      <Route path='/myuploads' element={<MyUploads
-        handleLogout={handleLogout}
-        handleAllChanges={handleAllChanges}
-        handleAddBook={handleAddBook}
-        handleFetchUploads={handleFetchUploads}
-        handleMessage={handleMessage} />} />
-    </Routes>
+    //   <Route path='/myuploads' element={<MyUploads
+    //     handleLogout={handleLogout}
+    //     handleAllChanges={handleAllChanges}
+    //     handleAddBook={handleAddBook}
+    //     handleFetchUploads={handleFetchUploads}
+    //     handleMessage={handleMessage} />} />
+    // </Routes>
   );
 }
 

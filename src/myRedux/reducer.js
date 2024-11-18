@@ -58,13 +58,6 @@ const myReducer = (state = allState, action) => {
                 }, [...state.booksByGenre])
             }
 
-        case "VIEWED_BOOK":
-            const { viewedBook } = action.payload
-            return {
-                ...state,
-                viewedBook
-            }
-
         case "BOOK_SEARCH":
             const { searchedBook } = action.payload
             return {

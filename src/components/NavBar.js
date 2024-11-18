@@ -18,6 +18,11 @@ const NavBar = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const navbarRef = useRef(null)
+    const [viewMorePath, setPath] = useState(location.pathname.includes('viewmore'))
+
+    useEffect(() => {
+        setShowGenre(!viewMorePath)
+    }, [location])
 
     useEffect(() => {
         if (allBooks.length) return dispatch(handleSorting())
@@ -26,8 +31,7 @@ const NavBar = () => {
     useEffect(() => {
         const handleScroll = () => {
             let currentScrollPos = window.pageYOffset;
-            const checkScroll = prevScrollPos > currentScrollPos && navbarRef.current
-            if (navbarRef.current) navbarRef.current.style.top = checkScroll ?? '0';
+            const checkScroll = prevScrollPos > currentScrollPos && navbarRef.current && !viewMorePath
             setShowGenre(checkScroll)
             prevScrollPos = currentScrollPos;
         };
@@ -46,6 +50,7 @@ const NavBar = () => {
         handleClearSearchOnNavigate()
 
     }, [location, dispatch])
+
 
     return (
         <nav ref={navbarRef} expand="lg" className='bookstore-nav'>
