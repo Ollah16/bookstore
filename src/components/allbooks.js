@@ -4,6 +4,7 @@ import { TiStar } from "react-icons/ti";
 import { FaShoppingCart } from "react-icons/fa";
 import { BookLoaderComponent } from './bookloader';
 import { useNavigate } from 'react-router-dom';
+import BookRating from './bookRating';
 
 const Allbooks = () => {
     const allBooks = useSelector(state => state.allBooks)
@@ -30,13 +31,7 @@ const Allbooks = () => {
                         <button className='more-details' onClick={() => navigate(`/viewmore/${book._id}`)}>more details</button>
                     </div>
 
-                    <div className='book-rating'>
-                        <TiStar size={20} />
-                        <TiStar size={20} />
-                        <TiStar size={20} />
-                        <TiStar size={20} />
-                        <TiStar size={20} />
-                    </div>
+                    <BookRating />
 
                     <button className='add-to-basket'> <FaShoppingCart size={18} /> <span>Add to basket</span></button>
 

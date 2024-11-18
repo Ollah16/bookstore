@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BookRating from './bookRating'
 import { RiSubtractFill } from 'react-icons/ri'
 import { MdAdd } from 'react-icons/md'
-import { useSelector } from 'react-redux'
 import { FaArrowRight } from 'react-icons/fa'
 
-const BookFeature = ({ display, setAdd }) => {
+const BookFeature = ({ display, setAdd, viewedBook }) => {
 
-    const viewedBook = useSelector(state => state.viewedBook)
+    const [innerWidth, setInner] = useState(window.innerWidth)
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setInner(width);
+            setAdd(width > 792 ? 'description' : null);
+        }
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleClicks = (type) => {
-        setAdd((prev) => type === 'description' && window.innerWidth > 792 ? type : prev === type ? null : type)
+        setAdd((prev) => prev === type ? null : type)
     }
 
     return (
@@ -19,7 +31,7 @@ const BookFeature = ({ display, setAdd }) => {
                 <ul className={`product-ul ${display === 'description' ? 'active' : ''}`}>
 
                     <li>
-                        <button onClick={() => handleClicks('description')} className={display === 'description' ? 'active' : ''}>
+                        <button onClick={() => setAdd((prev) => prev === 'description' ? null : 'description')} className={display === 'description' ? 'active' : ''}>
                             Product Description   <span><MdAdd className='svgopen' /><RiSubtractFill className='svgclose' /></span>
                         </button>
                     </li>
@@ -35,7 +47,7 @@ const BookFeature = ({ display, setAdd }) => {
 
                 <ul className={`product-ul ${display == 'detail' ? 'active' : ''}`}>
                     <li>
-                        <button onClick={() => handleClicks('detail')} className={display == 'detail' ? 'active' : ''}>Details <span><MdAdd className='svgopen' /><RiSubtractFill className='svgclose' /></span></button>
+                        <button onClick={() => setAdd((prev) => prev === 'detail' ? null : 'detail')} className={display == 'detail' ? 'active' : ''}>Details <span><MdAdd className='svgopen' /><RiSubtractFill className='svgclose' /></span></button>
                     </li>
 
                     <li className={`product-details ${display == 'detail' ? 'active' : ''}`}>
@@ -60,7 +72,7 @@ const BookFeature = ({ display, setAdd }) => {
 
                 <ul className={`product-ul ${display == 'review' ? 'active' : ''}`}>
                     <li>
-                        <button onClick={() => handleClicks('review')} className={display == 'review' ? 'active' : ''}>Review this book <span><MdAdd className='svgopen' /><RiSubtractFill className='svgclose' /></span></button>
+                        <button onClick={() => setAdd((prev) => prev === 'review' ? null : 'review')} className={display == 'review' ? 'active' : ''}>Review this book <span><MdAdd className='svgopen' /><RiSubtractFill className='svgclose' /></span></button>
                     </li>
 
                     <li className={`product-review ${display == 'review' ? 'active' : ''}`}>

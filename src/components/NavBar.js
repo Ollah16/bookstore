@@ -13,7 +13,7 @@ const NavBar = () => {
     const allBooks = useSelector(state => state.allBooks)
     const [showGenre, setShowGenre] = useState(true)
     const dispatch = useDispatch()
-    let [searchValue, setSearchInp] = useState()
+    let [searchValue, setSearchInp] = useState('')
     let prevScrollPos = window.pageYOffset;
     const location = useLocation();
     const navigate = useNavigate()
@@ -67,7 +67,7 @@ const NavBar = () => {
                         type="text"
                         id='search'
                         placeholder='Search by title, author, keyword....'
-                        onChange={(e) => setSearchInp(e.target.value)}
+                        onInput={(e) => setSearchInp(e.target.value)}
                     />
 
                     {searchedBook && <button className='clear-search' onClick={clearSearch}>X</button>}

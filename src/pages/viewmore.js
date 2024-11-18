@@ -15,6 +15,7 @@ import FooterPage from '../components/Footer';
 import BookFeature from '../components/bookFeature';
 import axios from 'axios';
 import OtherBooks from '../components/otherBooks';
+import BookRating from '../components/bookRating';
 
 export const loader = async ({ params }) => {
     try {
@@ -95,13 +96,7 @@ const ViewMore = () => {
 
                     <div className='bookrating-section'>
                         <div>
-                            <span className='book-rating'>
-                                <TiStar size={25} />
-                                <TiStar size={25} />
-                                <TiStar size={25} />
-                                <TiStar size={25} />
-                                <TiStar size={25} />
-                            </span>
+                            <BookRating />
                             <span>
                                 4.70 Average <br></br>
                                 83717 Reviews
@@ -114,7 +109,7 @@ const ViewMore = () => {
                 </div>
             }
 
-            <BookFeature display={display} setAdd={setAdd} />
+            <BookFeature display={display} setAdd={setAdd} viewedBook={viewedBook} />
 
             <div className='product-description'>
 
