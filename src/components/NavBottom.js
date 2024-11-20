@@ -12,6 +12,12 @@ const NavBottom = () => {
     const dispatch = useDispatch()
     const activeNav = useSelector(state => state.activeNav)
 
+    const handleFocus = (type) => {
+        const searchInput = document.querySelector(".search-input")
+        if (searchInput && type === 'focus') return searchInput.focus()
+        return searchInput.blur()
+    }
+
     return (
         <section className='navbottom d-md-none'>
 
@@ -34,14 +40,20 @@ const NavBottom = () => {
                 </div>
 
                 <div>
-                    <button onClick={() => dispatch(handleNavBtn('search'))}
+                    <button onClick={() => {
+                        dispatch(handleNavBtn('search'));
+                        handleFocus('focus')
+                    }}
                         className={activeNav === 'search' ? 'active' : ''}
                     >
                         <IoSearch size={18} />
                         <label htmlFor='search'> SEARCH</label>
                     </button>
 
-                    <button onClick={() => dispatch(handleNavBtn('search'))}
+                    <button onClick={() => {
+                        dispatch(handleNavBtn('search'));
+                        handleFocus('blur')
+                    }}
                         className={activeNav === 'search' ? 'active' : ''}
                     >
                         <CgClose size={18} />
