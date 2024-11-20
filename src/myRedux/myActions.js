@@ -76,6 +76,10 @@ export const handleSorting = () => (dispatch) => {
     dispatch({ type: 'SORT_GENRE' })
 }
 
+export const handleNavBtn = (type) => (dispatch) => {
+    dispatch({ type: "NAV_BTNS", payload: { type } })
+}
+
 export const handleChanges = (type, bookId, data) => {
 
     return async (dispatch) => {

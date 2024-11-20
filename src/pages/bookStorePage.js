@@ -5,42 +5,37 @@ import { TiStar } from "react-icons/ti";
 import { FaTruck } from "react-icons/fa6";
 import { GiBookPile } from "react-icons/gi";
 
-import NavBottom from '../components/NavBottom';
-import ExpandableNav from '../components/Expandable';
-import useHCB from '../custom_hook/useHCB';
-import NavBar from '../components/NavBar';
-import FooterPage from '../components/Footer';
 import Allbooks from '../components/allbooks';
 import SearchedBook from '../components/searchedBook';
 import Genreclass from '../components/genreclass';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleNavBtn } from '../myRedux/myActions';
 
 const BookStorePage = ({
     handleLogout,
 }) => {
 
+    const dispatch = useDispatch()
     const bookstoreBodyRef = useRef(null)
     const containerRef = useRef(null)
-    const [activeCategory, handleFooterBtn] = useHCB()
+    const activeNav = useSelector(state => state.activeNav)
 
     useEffect(() => {
-        const checkSearch = activeCategory && activeCategory !== 'search'
+        const checkSearch = activeNav && activeNav !== 'search'
         if (containerRef.current) containerRef.current.style.position = checkSearch ? 'fixed' : 'relative'
-    }, [activeCategory])
+    }, [activeNav])
 
     useEffect(() => {
         const bookStoreRef = bookstoreBodyRef.current
-        const handleCloseNavs = () => handleFooterBtn(null)
+        const handleCloseNavs = () => dispatch(handleNavBtn(null))
         bookStoreRef.addEventListener('click', handleCloseNavs)
         return () => bookStoreRef.removeEventListener('click', handleCloseNavs)
-    }, [handleFooterBtn])
+    }, [dispatch])
 
     return (<Container fluid ref={containerRef} >
 
-        <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
 
         <div ref={bookstoreBodyRef}>
-            <NavBar />
-
             <div className='main-content-div'>
                 <Allbooks />
 
@@ -79,12 +74,8 @@ const BookStorePage = ({
                 </section>
 
             </div >
-
-            <FooterPage />
-
         </div>
 
-        <ExpandableNav activeCategory={activeCategory} />
 
     </Container >
     )

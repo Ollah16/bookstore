@@ -1,6 +1,7 @@
 let allState = {
     isRegister: false,
     isLogged: false,
+    activeNav: null,
     viewedBook: {},
     allBooks: [],
     userUploads: [],
@@ -29,6 +30,14 @@ const myReducer = (state = allState, action) => {
             return {
                 ...state,
                 message
+            }
+
+        case "NAV_BTNS":
+            const { type } = action.payload
+
+            return {
+                ...state,
+                activeNav: state.activeNav === type ? null : type
             }
 
         case "ALL_BOOKS":

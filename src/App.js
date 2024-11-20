@@ -1,10 +1,7 @@
 import './App.css';
 import React, { useEffect } from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
-// import HomePage from './home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import ViewMore from './viewmore';
-// import MyUploads from './myUploads';
 import { useDispatch, } from 'react-redux';
 import {
   handleBookAdd,
@@ -16,8 +13,7 @@ import {
   handleNewMessage,
   handleGetAllBooks,
 } from './myRedux/myActions';
-
-// import BookStorePage from './bookStorePage';
+import Layout from './layout';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,26 +51,11 @@ function App() {
     localStorage.removeItem('accessToken')
   }
 
-  return (<Outlet />
-    // <Routes>
-    //   <Route path='/p' element={<HomePage
-    //     handleAuthentication={handleAuthentication}
-    //     handleIsRegister={handleIsRegister}
-    //   />} />
-
-    //   <Route path='/*' element={<BookStorePage
-    //     handleLogout={handleLogout}
-    //   />} />
-
-    //   <Route path='/viewmore/:bookId' element={<ViewMore />} />
-
-    //   <Route path='/myuploads' element={<MyUploads
-    //     handleLogout={handleLogout}
-    //     handleAllChanges={handleAllChanges}
-    //     handleAddBook={handleAddBook}
-    //     handleFetchUploads={handleFetchUploads}
-    //     handleMessage={handleMessage} />} />
-    // </Routes>
+  return (<>
+    <Layout>
+      <Outlet />
+    </Layout>
+  </>
   );
 }
 

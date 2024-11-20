@@ -7,17 +7,13 @@ import { TiStar } from "react-icons/ti";
 import { GiWorld } from "react-icons/gi";
 import { MdVerifiedUser } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
-import NavBar from '../components/NavBar';
-import NavBottom from '../components/NavBottom';
-import useHCB from '../custom_hook/useHCB';
-import ExpandableNav from '../components/Expandable';
-import FooterPage from '../components/Footer';
 import BookFeature from '../components/bookFeature';
 import axios from 'axios';
 import OtherBooks from '../components/otherBooks';
 import BookRating from '../components/bookRating';
 
 export const loader = async ({ params }) => {
+
     try {
         const response = await axios.get(`https://book-store-back-end-three.vercel.app/store/viewmore/${params.bookId}`, null)
         const { viewedBook } = response.data
@@ -31,12 +27,10 @@ export const loader = async ({ params }) => {
 const ViewMore = () => {
 
     const viewedBook = useLoaderData()
-    const [activeCategory, handleFooterBtn] = useHCB()
     let [display, setAdd] = useState('description')
 
-    return (<Container fluid className='bookstore-container'>
-        <NavBar />
 
+    return (<Container fluid className='bookstore-container'>
         <section className='viewmore-content'>
 
             {viewedBook &&
@@ -167,12 +161,6 @@ const ViewMore = () => {
         </section>
 
         <OtherBooks viewedBook={viewedBook} />
-
-        <NavBottom handleFooterBtn={handleFooterBtn} activeCategory={activeCategory} />
-
-        <ExpandableNav activeCategory={activeCategory} />
-
-        <FooterPage />
     </Container >)
 }
 export default ViewMore;
