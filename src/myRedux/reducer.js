@@ -3,6 +3,7 @@ let allState = {
     isLogged: false,
     activeNav: null,
     viewedBook: {},
+    searchedBook: [],
     allBooks: [],
     userUploads: [],
     booksByGenre: []
@@ -25,12 +26,23 @@ const myReducer = (state = allState, action) => {
                 isRegister: value
             }
 
-        case "MESSAGE":
-            const { message } = action.payload
+        case "BOOKSEARCH":
+            const { bookTitle } = action.payload;
+
+            const regex = new RegExp(bookTitle, 'i');
+
+            const matchedBook = state.allBooks.reduce((acc, book) => {
+                if (regex.test(book.title) || regex.test(book.author)) {
+                    acc.push(book);
+                }
+                return acc;
+            }, []);
+
             return {
                 ...state,
-                message
-            }
+                searchedBook: matchedBook
+            };
+
 
         case "NAV_BTNS":
             const { type } = action.payload
@@ -67,11 +79,10 @@ const myReducer = (state = allState, action) => {
                 }, [...state.booksByGenre])
             }
 
-        case "BOOK_SEARCH":
-            const { searchedBook } = action.payload
+        case "CLEARSEARCH":
             return {
                 ...state,
-                searchedBook
+                searchedBook: []
             }
 
         case "MY_UPLOADS":
@@ -89,7 +100,7 @@ const myReducer = (state = allState, action) => {
                 viewedBook: {},
                 allBooks: [],
                 userUploads: [],
-                message: ''
+                bookTitle: ''
             };
 
     }

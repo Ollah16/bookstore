@@ -10,6 +10,7 @@ import SearchedBook from '../components/searchedBook';
 import Genreclass from '../components/genreclass';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleNavBtn } from '../myRedux/myActions';
+import { BookLoaderComponent } from '../components/bookloader';
 
 const BookStorePage = ({
     handleLogout,
@@ -19,6 +20,8 @@ const BookStorePage = ({
     const bookstoreBodyRef = useRef(null)
     const containerRef = useRef(null)
     const activeNav = useSelector(state => state.activeNav)
+    const searchedBook = useSelector(state => state.searchedBook)
+    const allBooks = useSelector(state => state.allBooks)
 
     useEffect(() => {
         const checkSearch = activeNav && activeNav !== 'search'
@@ -34,12 +37,14 @@ const BookStorePage = ({
 
     return (<Container fluid ref={containerRef} >
 
-
         <div ref={bookstoreBodyRef}>
             <div className='main-content-div'>
-                <Allbooks />
-
-                <SearchedBook />
+                {allBooks.length > 0 && !searchedBook.length > 0 ?
+                    <Allbooks />
+                    : searchedBook.length > 0 ?
+                        <SearchedBook /> :
+                        <BookLoaderComponent />
+                }
 
                 <Genreclass />
 

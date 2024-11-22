@@ -183,29 +183,12 @@ export const handleUserUploads = () => async (dispatch) => {
     catch (err) { console.error(err) }
 }
 
-export const handleAllSearch = (bookTitle) => async (dispatch) => {
-    axios.get(`https://book-store-back-end-three.vercel.app/store/searchBook/${bookTitle}`,
-
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            }
-        }).then((response) => {
-            const { searchedBook, message } = response.data
-
-
-            if (searchedBook) { return dispatch({ type: "BOOK_SEARCH", payload: { searchedBook } }) }
-            else {
-                dispatch({ type: "MESSAGE", payload: { message } })
-                setTimeout(() => {
-                    dispatch({ type: "MESSAGE", payload: { message: '' } })
-                }, 2000)
-            }
-        }).catch((error) => { console.error(error) })
+export const handleSearch = (bookTitle) => async (dispatch) => {
+    dispatch({ type: "BOOKSEARCH", payload: { bookTitle } })
 }
 
 export const clearSearch = () => (dispatch) => {
-    dispatch({ type: "BOOK_SEARCH", payload: { searchedBook: '' } })
+    dispatch({ type: "CLEARSEARCH" })
 }
 
 export const handleNewMessage = (message) => (dispatch) => {

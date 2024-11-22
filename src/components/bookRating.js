@@ -3,7 +3,7 @@ import { TiStar } from 'react-icons/ti'
 
 const BookRating = ({ size }) => {
     return (
-        <div className='book-rating'>
+        <div className='book__rating'>
             <TiStar size={size} />
             <TiStar size={size} />
             <TiStar size={size} />

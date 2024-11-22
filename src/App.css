@@ -1,8 +1,11 @@
+.layout {
+    background-color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
 .bookstore-container {
     padding: 0 !important;
-    background-color: #fff;
-    ;
-    min-height: 100vh;
 }
 
 .genre-container {
@@ -18,7 +21,7 @@
     max-width: 1220px;
 }
 
-.book-gallery {
+.book__gallery {
     padding: 0 20px;
 }
 
@@ -59,6 +62,20 @@
         width: 80%;
     }
 
+    .search__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search__history {
+        width: 100%;
+        background-color: white;
+        max-height: 300px;
+        overflow-y: auto;
+        color: black;
+    }
+
     .bookstore-nav {
         background-color: #0a6556;
         color: #BDBDBD;
@@ -85,16 +102,17 @@
         margin-top: 200px;
     } */
 
-    .book-gallery {
+    .book__gallery {
         display: flex;
         justify-content: space-between;
+        gap: 20px;
         flex-wrap: wrap;
         padding-bottom: 0;
         max-width: 1220px;
         margin: 3rem auto;
     }
 
-    .book-container {
+    .book__cover {
         position: relative;
         overflow: hidden;
         width: 11rem;
@@ -124,14 +142,14 @@
         z-index: 1;
     }
 
-    .book-container .book-image {
+    .book__cover .book-image {
         width: 11rem;
         height: 14rem;
         transition: transform 0.3s ease-in-out;
         z-index: 0;
     }
 
-    .add-to-basket {
+    .add__button {
         border-radius: 3rem;
         margin: .3rem;
         display: flex;
@@ -306,7 +324,7 @@
         align-items: center;
     }
 
-    .book-gallery {
+    .book__gallery {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -335,7 +353,7 @@
         letter-spacing: -0.9px;
     }
 
-    .book-container {
+    .book__cover {
         position: relative;
         overflow: hidden;
         width: 11rem;
@@ -347,13 +365,13 @@
         /* top: 7rem; */
     }
 
-    .book-container .book-image {
+    .book__cover .book-image {
         width: 11rem;
         height: 14rem;
         transition: transform 0.3s ease-in-out;
     }
 
-    .add-to-basket {
+    .add__button {
         border-radius: 3rem;
         margin: .3rem;
         display: flex;
@@ -423,6 +441,7 @@
 }
 
 @media(min-width: 576px) {
+
     .genre-container ul li {
         width: 30% !important;
         border: 1px solid #d4d4d5;
@@ -469,7 +488,7 @@
     content: '';
     width: 100%;
     display: inline-block;
-    height: 143.95px;
+    height: 145px;
 }
 
 @media(max-width: 768px) {
@@ -486,6 +505,10 @@
 
 @media(max-width: 768px) {
 
+    .viewmore__section {
+        margin-top: 20px;
+    }
+
     .bookstore-nav {
         background-color: #0a6556;
         color: #BDBDBD;
@@ -495,7 +518,7 @@
         transition: top .2s ease-in-out;
     }
 
-    .book-gallery {
+    .book__gallery {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -540,13 +563,13 @@
 }
 
 @media(max-width: 662px) {
-    .book-gallery {
+    .book__gallery {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    .book-container {
+    .book__cover {
         position: relative;
         overflow: hidden;
         width: 8rem;
@@ -576,13 +599,13 @@
         letter-spacing: -0.9px;
     }
 
-    .book-container .book-image {
+    .book__cover .book-image {
         width: 11rem;
         height: 14rem;
         transition: transform 0.3s ease-in-out;
     }
 
-    .add-to-basket {
+    .add__button {
         border-radius: 3rem;
         margin: .3rem;
         display: flex;
@@ -786,11 +809,11 @@
 }
 
 
-.book-container:hover .book-image {
+.book__cover:hover .book-image {
     transform: scale(1.01);
 }
 
-.book-rating {
+.book__rating {
     color: rgb(245, 188, 74);
     display: flex;
     align-items: center;
@@ -819,17 +842,28 @@
 
 .book-info h4 {
     font-size: 1.3rem;
-    margin: 0 3rem;
+    margin: 0 1rem;
 }
 
-.book-container:hover .book-info {
+.book__subcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book__subcon .book__rating {
+    margin-top: -15px;
+}
+
+.book__cover:hover .book-info {
     opacity: 1;
 }
 
-.add-to-basket {
+.add__button {
     border-radius: 3rem;
     margin: .3rem;
     display: flex;
+    gap: 10px;
     align-items: center;
     justify-content: space-around;
     letter-spacing: -1.3px;
@@ -840,11 +874,15 @@
     border: none;
 }
 
-.add-to-basket:hover {
+.add__button svg {
+    margin-bottom: 3px;
+}
+
+.add__button:hover {
     background-color: #056757;
 }
 
-.book-container button span {
+.book__cover button span {
     margin: 0 .5rem;
 }
 
@@ -915,6 +953,13 @@
 }
 
 @media(min-width:768px) {
+
+    .viewmore__section::before {
+        content: '';
+        width: 100%;
+        display: inline-block;
+        height: 145px;
+    }
 
     .product-additions .product-ul li:last-of-type,
     .product-additions .product-ul:nth-child(2) {
@@ -1013,7 +1058,7 @@
         content: '';
         background-color: #a19b9b;
         display: inline-block;
-        height: 1px;
+        height: .5px;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -1256,15 +1301,15 @@
 
 .viewmore__section {
     max-width: 1220px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 20px;
 }
 
-.viewed-book-container {
+.viewedbook__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 9.375rem;
     margin-bottom: 2.5rem;
     position: relative;
 }
@@ -1491,7 +1536,7 @@
         width: 100%;
     }
 
-    .viewed-book-container {
+    .viewedbook__container {
         display: flex;
     }
 
@@ -1546,24 +1591,24 @@
         display: none;
     }
 
-    .viewmore-content {
+    .viewmore__content {
         position: relative;
         z-index: 2;
         background-color: #fff;
     }
 
-    .viewed-book-container {
+    .viewedbook__container {
         display: flex;
         flex-direction: column;
         align-items: normal;
-        margin-top: 1.375rem;
+        margin-top: 3rem;
         margin-bottom: 0;
         position: relative;
         z-index: 3;
         background-color: #fff;
     }
 
-    .viewed-book-container .image-cost-section {
+    .viewedbook__container .image-cost-section {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -1648,7 +1693,7 @@
 }
 
 
-.bookrating-section .book-rating svg {
+.bookrating-section .book__rating svg {
     color: #004D40;
 }
 
@@ -2342,17 +2387,17 @@ section.bookeryactive a:hover {
         position: relative;
     }
 
-    .search-section .book-container {
+    .search-section .book__cover {
         margin-top: -150px;
         margin-bottom: 150px;
     }
 
-    .search-section .book-container {
+    .search-section .book__cover {
         margin-top: -150px;
         margin-bottom: 150px;
     }
 
-    .search-section .book-container .book-image {
+    .search-section .book__cover .book-image {
         width: 25;
     }
 }
@@ -2364,12 +2409,12 @@ section.bookeryactive a:hover {
         margin-bottom: 50px;
     }
 
-    .search-section .book-container {
+    .search-section .book__cover {
         margin-top: -150px;
         margin-bottom: 150px;
     }
 
-    .search-section .book-container .book-image {
+    .search-section .book__cover .book-image {
         width: 25;
     }
 }
@@ -2381,12 +2426,12 @@ section.bookeryactive a:hover {
         margin-bottom: 50px;
     }
 
-    .search-section .book-container {
+    .search-section .book__cover {
         margin-top: -150px;
         margin-bottom: 150px;
     }
 
-    .search-section .book-container .book-image {
+    .search-section .book__cover .book-image {
         width: 25;
     }
 
@@ -2402,12 +2447,12 @@ section.bookeryactive a:hover {
         margin-bottom: 50px;
     }
 
-    .search-section .book-container {
+    .search-section .book__cover {
         margin-top: -150px;
         margin-bottom: 40px;
     }
 
-    .search-section .book-container .book-image {
+    .search-section .book__cover .book-image {
         width: 25;
     }
 }

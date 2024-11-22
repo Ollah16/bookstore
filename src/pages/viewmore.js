@@ -30,9 +30,9 @@ const ViewMore = () => {
 
     return (<Container fluid className='bookstore-container'>
         <section className='viewmore__section'>
-            <section className='viewmore-content'>
+            <section className='viewmore__content'>
                 {viewedBook &&
-                    <div className='viewed-book-container'>
+                    <div className='viewedbook__container'>
                         <div className='bookdetails-section'>
                             <div className='viewed-book-details'>
                                 <h2>{viewedBook.title}</h2>
