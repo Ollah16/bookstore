@@ -3,6 +3,7 @@ import BookRating from './bookRating'
 import { useSelector } from 'react-redux'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import Button from './button'
 
 const OtherBooks = ({ viewedBook }) => {
 
@@ -33,13 +34,13 @@ const OtherBooks = ({ viewedBook }) => {
                         <div className="book-info">
                             <h4>{book.title}</h4>
                             <p>{book.author}</p>
-                            <button className='more-details' onClick={() => handleViewOther(`/viewmore/${book._id}`)}>more details</button>
+                            <Button className={'more-details'} svg={null} value={'more details'} onClick={() => handleViewOther(`/viewmore/${book._id}`)} />
+
                         </div>
 
-                        <BookRating />
+                        <BookRating size={25} />
 
-                        <button className='add-to-basket'> <FaShoppingCart size={18} /> <span>Add to basket</span></button>
-
+                        <Button className={'add-to-basket'} value={'Add to basket'} svg={<FaShoppingCart size={18} />} />
                     </div>))}
             </div>
         </div >)

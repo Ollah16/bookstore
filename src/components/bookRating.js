@@ -1,14 +1,14 @@
 import React from 'react'
 import { TiStar } from 'react-icons/ti'
 
-const BookRating = () => {
+const BookRating = ({ size }) => {
     return (
         <div className='book-rating'>
-            <TiStar size={20} />
-            <TiStar size={20} />
-            <TiStar size={20} />
-            <TiStar size={20} />
-            <TiStar size={20} />
+            <TiStar size={size} />
+            <TiStar size={size} />
+            <TiStar size={size} />
+            <TiStar size={size} />
+            <TiStar size={size} />
         </div>)
 }
 

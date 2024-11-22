@@ -7,7 +7,7 @@ const GenreList = ({ showGenre }) => {
     const navigate = useNavigate()
 
     return (
-        <section id='genre-section' className={`genre-div ${showGenre ? 'display-genre' : 'no-display-genre'}`}>
+        <section id='genre__section' className={`genre-div ${showGenre ? 'display-genre' : 'no-display-genre'}`}>
             <div className='dl'>
                 {Object.entries(booksByGenre).map(([genre, genreBooks]) => (
                     <dl key={genre} >

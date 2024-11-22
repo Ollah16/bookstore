@@ -480,6 +480,7 @@
         height: 0px;
         margin: 20px 0;
     }
+
 }
 
 
@@ -791,7 +792,6 @@
 
 .book-rating {
     color: rgb(245, 188, 74);
-    margin: .4rem 0;
     display: flex;
     align-items: center;
 }
@@ -901,7 +901,18 @@
     color: #0a6556;
 }
 
-
+.review__button {
+    background-color: #004D40;
+    border-radius: 4rem;
+    color: white;
+    border: none;
+    padding: .3rem .5rem;
+    letter-spacing: -.9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color ease-in-out 250ms, box-shadow ease-in-out 250ms;
+}
 
 @media(min-width:768px) {
 
@@ -921,7 +932,7 @@
         border-left: 0;
     }
 
-    .product-additions .product-ul button {
+    .feature_click {
         border: 1px solid rgb(154, 152, 152);
         height: 100%;
         background-color: transparent;
@@ -929,21 +940,18 @@
         border-bottom: 0;
         color: #0a6556;
         letter-spacing: -.9px;
+        min-width: 210px;
     }
 
-    .product-additions .product-ul button:hover {
+    .feature_click:hover {
         text-decoration: underline;
     }
 
-    .product-additions .product-ul button.active {
+    .feature_click.active {
         color: white;
         background-color: #0a6556;
     }
 
-    .product-description {
-        border-bottom: 1px rgb(154, 152, 152) solid;
-        border-top: 1px rgb(154, 152, 152) solid;
-    }
 
     .product-additions .product-container {
         display: flex;
@@ -952,8 +960,8 @@
         max-width: 1220px;
     }
 
-    .product-additions .product-container div:last-of-type {
-        border-right: 1px rgb(154, 152, 152) solid;
+    .product-review {
+        display: block;
     }
 
     .product-review div {
@@ -975,28 +983,105 @@
         outline: none;
     }
 
-    .product-review button {
-        margin-right: 2rem;
-        background-color: #004D40;
-        border-radius: 4rem;
-        color: white;
-        border: none;
-        padding: .3rem .5rem;
-        letter-spacing: -.9px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: background-color ease-in-out 250ms, box-shadow ease-in-out 250ms;
+    .review__button {
+        min-width: 210px;
     }
 
-    .product-review button:hover {
+    .review__button:hover {
         background-color: #056757;
         box-shadow: 0px 3px 3px 1px gray;
     }
 
-    .product-container span {
+
+    .product__ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .product__ul h4 {
+        color: #056757;
+    }
+
+    .product__ul>div {
+        display: flex;
+        position: relative;
+    }
+
+
+    .product__ul>div::after {
+        content: '';
+        background-color: #a19b9b;
+        display: inline-block;
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 -100%;
+    }
+
+    .product__ul>div button {
+        border-bottom: 0;
+        padding: 5px 10px;
+    }
+
+    .product__ul>div button:first-of-type {
+        border-right: 0;
+    }
+
+    .product__description,
+    .product__review {
         display: none;
     }
+
+    .product__description.active,
+    .product__review.active {
+        display: flex;
+        margin: 20px 0;
+        width: 100%;
+        letter-spacing: -.9px;
+        padding-left: 0;
+    }
+
+    .product__description>div:first-of-type {
+        width: 58.33333%;
+        display: inline-block;
+        margin: 20px 0;
+        letter-spacing: -.9px;
+        padding: 0 20px;
+        padding-left: 0;
+    }
+
+    .product__description>div:last-of-type {
+        background-color: #f0f0f0;
+        width: 41.66667%;
+        padding: 25px;
+    }
+
+    .product__review>div {
+        width: 100%;
+    }
+
+    .product__review textarea {
+        height: 8rem;
+    }
+
+    .product__review label {
+        color: #0a6556;
+        font-size: small;
+    }
+
+    .product__review>h4 {
+        color: #0a6556
+    }
+
+    .product__review>div>span {
+        display: flex;
+        gap: 5px;
+        margin: 20px auto
+    }
+
 }
 
 @media(max-width:768px) {
@@ -1029,7 +1114,7 @@
         padding-left: 0;
         margin: .03rem 0;
         background-color: white;
-        z-index: 100;
+        z-index: 2;
     }
 
     .product-ul li {
@@ -1046,7 +1131,7 @@
         background-color: white;
     }
 
-    .product-review div {
+    .product-review>div {
         padding: 10px 20px;
     }
 
@@ -1063,6 +1148,17 @@
     .product-details.active,
     .product-review.active {
         max-height: 500px;
+    }
+
+    .product-review>div>span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .product__ul {
+        display: none;
     }
 
     .product-ul li:first-of-type button {
@@ -1129,19 +1225,10 @@
         opacity: 0;
     }
 
-    .product-review button {
-        margin: .5rem 0 !important;
-        background-color: #004D40;
-        border-radius: 4rem;
-        color: white;
-        border: none;
-        padding: .3rem .5rem;
-        letter-spacing: -.9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        transition: background-color ease-in-out 250ms, box-shadow ease-in-out 250ms;
+    .review__button {
+        min-width: 250px;
+        margin-top: .5rem !important;
+        margin-bottom: 0px;
     }
 
     .product-review button:hover {
@@ -1167,13 +1254,16 @@
     color: #0a6556
 }
 
+.viewmore__section {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .viewed-book-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 0 20px;
     margin-top: 9.375rem;
     margin-bottom: 2.5rem;
     position: relative;
@@ -1462,13 +1552,6 @@
         background-color: #fff;
     }
 
-    .viewmore-content::after {
-        content: '';
-        display: inline-block;
-        height: 5rem;
-        position: relative;
-    }
-
     .viewed-book-container {
         display: flex;
         flex-direction: column;
@@ -1484,6 +1567,22 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+
+    .product__ulsm {
+        margin: 0 -20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product__ulsm::after {
+        height: 60px;
+        content: '';
+        display: inline-block;
+        position: relative;
+        width: 100%;
     }
 
     .cost-section {
@@ -2289,6 +2388,10 @@ section.bookeryactive a:hover {
 
     .search-section .book-container .book-image {
         width: 25;
+    }
+
+    .product__ulsm {
+        display: none;
     }
 }
 
